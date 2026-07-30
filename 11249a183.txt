@@ -193,9 +193,9 @@ SQL> /
 
 REGNO      NAME            DOB       G COURS       YEAR DEPTNAME
 ---------- --------------- --------- - ----- ---------- ----------
-11249A095  sai             14-oct-06 f btech          3 cse
+11249A183  yaswini         05-aug-07 f btech          3 cse
 11249A179  uma
-11249A147  likitha         22-DEC-05 f aiml           3 cse
+11249A095  sai chandana    14-oct-06 f aiml           3 cse
 
 SQL> insert into student values('&regno','&name','&dob','&gender','&course_name',&year,'&deptname');
 Enter value for regno: 11249A124
