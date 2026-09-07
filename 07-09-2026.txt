@@ -1,0 +1,173 @@
+SQL*Plus: Release 11.2.0.1.0 Production on Mon Sep 7 11:42:34 2026
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: A183@db2021
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.2.0.1.0 - Production
+
+SQL> create table student23
+  2  (
+  3  student23_id number(5) primary key,
+  4  student23_name varchar2(30),
+  5  department varchar2(20),
+  6  marks number(3)
+  7  );
+
+Table created.
+
+SQL> insert into student23 values(&student23_id,'&student23_name','&department',&marks);
+Enter value for student23_id: 101
+Enter value for student23_name: sony
+Enter value for department: cse
+Enter value for marks: 90
+old   1: insert into student23 values(&student23_id,'&student23_name','&department',&marks)
+new   1: insert into student23 values(101,'sony','cse',90)
+
+1 row created.
+
+SQL> /
+Enter value for student23_id: 102
+Enter value for student23_name: niha
+Enter value for department: ece
+Enter value for marks: 87
+old   1: insert into student23 values(&student23_id,'&student23_name','&department',&marks)
+new   1: insert into student23 values(102,'niha','ece',87)
+
+1 row created.
+
+SQL> /
+Enter value for student23_id: 103
+Enter value for student23_name: kutty
+Enter value for department: cse
+Enter value for marks: 99
+old   1: insert into student23 values(&student23_id,'&student23_name','&department',&marks)
+new   1: insert into student23 values(103,'kutty','cse',99)
+
+1 row created.
+
+SQL> /
+Enter value for student23_id: 104
+Enter value for student23_name: sreeja
+Enter value for department: cse
+Enter value for marks: 100
+old   1: insert into student23 values(&student23_id,'&student23_name','&department',&marks)
+new   1: insert into student23 values(104,'sreeja','cse',100)
+
+1 row created.
+
+SQL> /
+Enter value for student23_id: 105
+Enter value for student23_name: ammu
+Enter value for department: ece
+Enter value for marks: 92
+old   1: insert into student23 values(&student23_id,'&student23_name','&department',&marks)
+new   1: insert into student23 values(105,'ammu','ece',92)
+
+1 row created.
+
+SQL> select count(*) as total_students
+  2  from student23;
+
+TOTAL_STUDENTS
+--------------
+             5
+
+SQL> select sum(marks) as tatal_students
+  2  from student23;
+
+TATAL_STUDENTS
+--------------
+           468
+
+
+SQL> select avg(marks) as average_marks
+  2  from student23;
+
+AVERAGE_MARKS
+-------------
+         93.6
+
+SQL> select max(marks) as highest_mark
+  2  from student23;
+
+HIGHEST_MARK
+------------
+         100
+
+SQL> select min(marks) as lowest_mark
+  2  from student23;
+
+LOWEST_MARK
+-----------
+         87
+
+
+SQL> select department,avg(marks) as avg_marks
+  2  from student23
+  3  group by department;
+
+DEPARTMENT            AVG_MARKS
+-------------------- ----------
+cse                  96.3333333
+ece                        89.5
+
+SQL> select department,count(*) as total_students
+  2  from student23
+  3  group by department;
+
+DEPARTMENT           TOTAL_STUDENTS
+-------------------- --------------
+cse                               3
+ece                               2
+
+SQL> select department,max(marks) as max_marks
+  2  from student23
+  3  group by department;
+
+DEPARTMENT            MAX_MARKS
+-------------------- ----------
+cse                         100
+ece                          92
+
+SQL> select department,avg(marks) as avg_marks
+  2  from student23
+  3  group by department
+  4  having avg(marks)>85;
+
+DEPARTMENT            AVG_MARKS
+-------------------- ----------
+cse                  96.3333333
+ece                        89.5
+
+SQL> select department,count(*) as total_students
+  2  from student23
+  3  group by department
+  4  having count(*)>1;
+
+DEPARTMENT           TOTAL_STUDENTS
+-------------------- --------------
+cse                               3
+ece                               2
+
+SQL> select department,count(*) as no_of_students,avg(marks) as avg_marks,max(marks) as highest_mark
+  2  from student23
+  3  group by department
+  4  having avg(marks)>80;
+
+DEPARTMENT           NO_OF_STUDENTS  AVG_MARKS HIGHEST_MARK
+-------------------- -------------- ---------- ------------
+cse                               3 96.3333333          100
+ece                               2       89.5           92
+
+SQL> select * from student23;
+
+STUDENT23_ID STUDENT23_NAME                 DEPARTMENT                MARKS
+------------ ------------------------------ -------------------- ----------
+         101 sony                           cse                          90
+         102 niha                           ece                          87
+         103 kutty                          cse                          99
+         104 sreeja                         cse                         100
+         105 ammu                           ece                          92
